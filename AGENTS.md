@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code when working with code in this repository.
+This file provides guidance to AI coding assistants when working with code in this repository.
 
 ## Technology Stack
 
@@ -79,8 +79,10 @@ project/
 - Separate Success Criteria into Automated vs Manual verification
 - Track progress via checklist.md with status indicators (✅ 🚧 📋)
 
-## Imports
-@./docs/patterns.md
-@./docs/tsdoc-standards.md
-@./specs/CLAUDE.md
-@./.claude/personal-preferences.md
+## Additional Documentation
+
+Read these files for detailed patterns and standards:
+- [docs/patterns.md](./docs/patterns.md) - Code patterns and conventions
+- [docs/tsdoc-standards.md](./docs/tsdoc-standards.md) - Documentation standards
+- [specs/AGENTS.md](./specs/AGENTS.md) - Specs folder usage guide
+- [.claude/personal-preferences.md](./.claude/personal-preferences.md) - Personal development preferences
