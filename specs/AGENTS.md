@@ -11,6 +11,7 @@ The `/specs` folder contains feature specifications and progress tracking for sy
 ```
 specs/
 ├── AGENTS.md                    # This usage guide
+├── ROADMAP.md                   # Project-wide spec tracking and dependencies
 ├── templates/
 │   ├── spec-template.md         # Base specification template
 │   └── checklist-template.md    # Base checklist template
@@ -20,6 +21,30 @@ specs/
 ```
 
 ## Document Purposes
+
+### Roadmap (ROADMAP.md)
+**Primary Purpose**: High-level tracking of all specifications, their dependencies, and implementation status across the entire project.
+
+**LLM Usage**: Reference this file to understand project scope, identify what specs exist, check dependencies between specs, and determine what work can be started or is blocked.
+
+**Content Focus**:
+- Phase-organized table of all specs with status indicators
+- Priority levels and effort estimates for planning
+- Dependency tracking between specs
+- Quick reference legends for status, priority, and effort
+- Instructions for adding new spec entries
+
+**Phase Model**:
+- Phases represent **dependency waves**, not project stages
+- Phase N contains specs that can be worked in parallel (no dependencies on each other)
+- Phase N+1 contains specs that depend on Phase N work
+- Multiple unrelated features can coexist in the same phase if independent
+- Phases grow dynamically as new work is planned
+
+**Integration with Workflow**:
+- Reference ROADMAP.md to understand current project status and dependencies
+- Analyze feature requests to calculate appropriate phase placement
+- Update status as specs progress through development phases
 
 ### Spec (spec.md)
 **Primary Purpose**: The authoritative source of truth for feature requirements and technical design.
@@ -120,6 +145,7 @@ cp specs/templates/checklist-template.md specs/{feature-name}/checklist.md
 4. **Technical Depth**: Include specific file paths, code patterns, and architectural decisions
 5. **No Open Questions**: All technical uncertainties must be resolved before finalization
 6. **Test-Driven Structure**: Use Phase X.0 → Phase X.1 pattern for systematic development
+7. **Agentic-Appropriate Sizing**: Target Small (~1 hour) or Medium (~2-3 hours) specs; decompose anything larger into multiple focused specs
 
 ### For Checklists
 1. **Granular Tasks**: Break work into small, trackable units
@@ -127,6 +153,7 @@ cp specs/templates/checklist-template.md specs/{feature-name}/checklist.md
 3. **Context Preservation**: Include enough detail for session recovery
 4. **Status Visibility**: Use clear indicators (✅, 🚧, 📋) for quick assessment
 5. **Command References**: Include relevant development commands for quick access
+6. **Session Scope**: Checklists should reflect work completable in 1-3 hours for optimal agentic execution
 
 ## Integration with Development Workflow
 

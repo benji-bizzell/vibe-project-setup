@@ -19,7 +19,7 @@ When this command is invoked:
 
 ### Step 1: Analyze Current State
 
-1. **Read ROADMAP.md** to understand existing specs and phases
+1. **Read specs/ROADMAP.md** to understand existing specs and phases
 2. **Read relevant spec files** to understand current capabilities
 3. **Identify patterns** in existing specs for similar features
 
@@ -91,7 +91,12 @@ This feature [can/cannot] be developed in parallel with:
 ### Roadmap Integration
 
 **Add to Phase [X]**:
-[Table row format for easy copy-paste into ROADMAP.md]
+[Determine phase by analyzing dependency chain]
+- If no dependencies or only completed specs → Current active phase
+- If depends on in-progress specs → Phase after dependencies resolve
+- Create new phase section if needed
+
+[Table row format for easy copy-paste into specs/ROADMAP.md]
 
 | Spec | Status | Priority | Dependencies | Description | Location | Effort |
 |------|--------|----------|--------------|-------------|----------|--------|
@@ -109,16 +114,18 @@ Ask clarifying questions if needed:
 
 If user approves:
 1. Assign next available spec numbers
-2. Add entries to appropriate phase in ROADMAP.md
+2. Add entries to appropriate phase in specs/ROADMAP.md
 3. Update "Last Updated" date
 4. Suggest next steps (usually `/create_spec` for each proposed spec)
 
 ## Guidelines
 
-### Spec Granularity
-- Each spec should be independently testable
-- Prefer smaller, focused specs over large multi-purpose ones
-- If effort estimate is XL, consider splitting
+### Spec Granularity (Agentic Development)
+- Each spec should be independently testable and completable in one session
+- **Target**: Small (~1 hour) or Medium (~2-3 hours) specs only
+- **If effort feels Large**: ALWAYS decompose into 2-3 smaller specs automatically
+- Prefer focused, single-responsibility specs over multi-purpose ones
+- Each spec should have clear, measurable completion criteria
 
 ### Dependency Detection
 - Authentication/authorization needs
@@ -127,16 +134,38 @@ If user approves:
 - Infrastructure requirements
 - UI/UX dependencies
 
+### Effort Estimation Rules (Agentic Development)
+- **Small (~1 hour)**: Single feature, minimal integration, clear boundaries
+- **Medium (~2-3 hours)**: Moderate complexity, some cross-component work
+- **Large**: DO NOT USE - decompose into multiple Small/Medium specs instead
+
+**Auto-decomposition triggers**:
+- Feature requires >3 hours of work
+- Multiple distinct deliverables within one feature
+- Complex integration across many components
+- Implementation phases feel overwhelming
+
 ### Priority Assignment Rules
 - **Critical**: Blocks multiple other specs, foundation work
 - **High**: Needed for milestone completion, high user value
 - **Medium**: Nice to have, can be deferred one cycle
 - **Low**: Optional enhancement, technical debt reduction
 
-### Phase Assignment
-- **Phase 1**: Foundation work, no dependencies
-- **Phase 2**: Core features, depends on Phase 1
-- **Phase 3+**: Enhancements, depends on Phase 2
+### Phase Assignment (Dynamic Dependency Waves)
+Phases represent **dependency waves**, not project stages. Assign phases based on dependency chains:
+
+- **Phase N (Current)**: Specs with no dependencies OR only depend on completed work
+- **Phase N+1**: Specs that depend on in-progress Phase N work
+- **Phase N+2**: Specs that depend on Phase N+1 work
+- etc.
+
+**Rules**:
+1. Independent specs go in the same phase (can work in parallel)
+2. Dependent specs go in subsequent phases (must wait for dependencies)
+3. Create new phase sections dynamically as needed
+4. Multiple unrelated features can coexist in one phase
+
+**Example**: Phase 7 might contain: UI feature (Small), Backend cleanup (Medium), Telemetry (Small) - all independent, all parallel work.
 
 ## Example Interaction
 
@@ -178,15 +207,15 @@ I've analyzed the current roadmap and identified that this feature needs:
 
 ### Roadmap Integration
 
-Add to ROADMAP.md:
+Add to specs/ROADMAP.md:
 
-**Phase 2 table** (after Spec 005):
+**Phase 3** (assuming Phases 1-2 contain dependencies):
 | 007 | 📋 Planned | High | 002 | Email service provider integration | `specs/007-email/` | Medium |
 
-**Phase 3 table**:
+**Phase 4** (depends on Phase 3 work):
 | 008 | 📋 Planned | Medium | 007, 003 | Event-triggered email notifications | `specs/008-notifications/` | Small |
 
-Should I proceed with updating ROADMAP.md?
+Should I proceed with updating specs/ROADMAP.md?
 ```
 
 ## Notes

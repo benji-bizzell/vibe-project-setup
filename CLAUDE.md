@@ -83,4 +83,5 @@ project/
 @./docs/patterns.md
 @./docs/tsdoc-standards.md
 @./specs/CLAUDE.md
+@./specs/ROADMAP.md
 @./.claude/personal-preferences.md
