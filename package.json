@@ -1,0 +1,37 @@
+{
+  "name": "vibe-project-template",
+  "version": "1.0.0",
+  "description": "Claude Code Vibe Project Template - TDD Spec-Driven Development",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "echo 'Configure your dev command (e.g., tsx watch src/index.ts)'",
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint . --write",
+    "format": "biome format . --write",
+    "format:check": "biome format .",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && biome check . && npm run test",
+    "fix": "biome check . --write"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@biomejs/biome": "^2.2.2",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "neverthrow": "^8.2.1",
+    "ts-pattern": "^5.5.1",
+    "type-fest": "^4.30.0",
+    "zod": "^3.24.1"
+  }
+}
